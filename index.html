@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Helps the browser identify support for mobile applications -->
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" />
+
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Title on the browser tab -->
+    <title>WebGIS</title>
+    <!-- Leaflet CSS Library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <!-- Leaflet JavaScript Library -->
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <!-- Style for the fullscreen map display -->
+    <style>
+      html,
+      body,
+      #map {
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HTML Block to display the map -->
+    <div id="map"></div>
+    <script>
+      /* Initial Map */
+      //lat, long, zoom (the initial view can be determined from Google Earth)
+      var map = L.map("map").setView([-7.9, 110.45], 10);
+
+      /* Tile Basemap */
+      var basemap0 = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; <ahref="http://www.openstreetmap.org/copyright" >OpenStreetMap</a>',
+      });
+
+      var Esri_WorldImagery = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{ x } ", {
+        attribution: "Tiles &copy; Willia Diva &mdash; 23611022 Statistics Program Study at Universitas Islam Indonesia",
+      });
+      var OpenTopoMap = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+        maxZoom: 17,
+        attribution:
+          'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+      });
+
+      Esri_WorldImagery.addTo(map); //Calls the basemap to be displayed when the page is loaded
+
+      /Control Layer/;
+      var baseMaps = {
+        "Open Street Map": basemap0,
+        "Open Topo Map": OpenTopoMap,
+        "Esri WorldImagery": Esri_WorldImagery,
+      };
+
+      var Layers = {};
+      var layerControl = L.control.layers(baseMaps, Layers, { collapsed: false });
+      layerControl.addTo(map);
+
+      // custom marker
+      var markerBurger = L.icon({
+        iconUrl: "https://cdn-icons-png.flaticon.com/512/1046/1046784.png",
+        iconSize: [20, 20],
+      });
+
+      var tokoroti1 = L.marker([-6.170153, 106.831997], { icon: markerBurger });
+      tokoroti1.bindPopup("Suisse Bakery");
+      tokoroti1.bindTooltip("Jl. Hayam Wuruk No.10 5-6, RT.10/RW.9, Maphar, Kec. Taman Sari, Jakarta Barat, 11180");
+      tokoroti1.addTo(map);
+
+      var tokoroti2 = L.marker([-6.170708, 106.824532], { icon: markerBurger });
+      tokoroti2.bindPopup("The Harvest Cakes - Cikini");
+      tokoroti2.bindTooltip("Jl. Raden Saleh Raya No.5, RT.10/RW.2, Cikini, Menteng, Jakarta Pusat, 10330");
+      tokoroti2.addTo(map);
+
+      var tokoroti3 = L.marker([-6.179434, 106.835917], { icon: markerBurger });
+      tokoroti3.bindPopup("La Maison Patisserie");
+      tokoroti3.bindTooltip("Jl. KH Wahid Hasyim No.103, RT.9/RW.2, Gondangdia, Menteng, Jakarta Pusat, 10350");
+      tokoroti3.addTo(map);
+
+      var tokoroti4 = L.marker([-6.172345, 106.835678], { icon: markerBurger });
+      tokoroti4.bindPopup("Union Deli");
+      tokoroti4.bindTooltip("Plaza Senayan, Lantai Ground, Jl. Asia Afrika No.8, Gelora, Tanah Abang, Jakarta Pusat, 10270");
+      tokoroti4.addTo(map);
+
+      var tokoroti5 = L.marker([-6.166045, 106.83596], { icon: markerBurger });
+      tokoroti5.bindPopup("Tous Les Jours - Grand Indonesia");
+      tokoroti5.bindTooltip("Jl. MH Thamrin No.1, RT.1/RW.5, Kebon Melati, Tanah Abang, Jakarta Pusat, 10310");
+      tokoroti5.addTo(map);
+
+      var tokoroti6 = L.marker([-6.172895, 106.826552], { icon: markerBurger });
+      tokoroti6.bindPopup("Delicious Bakery & Pastry");
+      tokoroti6.bindTooltip("Jl. Kramat Raya No.108, RT.9/RW.2, Kwitang, Senen, Jakarta Pusat, 10420");
+      tokoroti6.addTo(map);
+
+      var tokoroti7 = L.marker([-6.182456, 106.830975], { icon: markerBurger });
+      tokoroti7.bindPopup("Paul Bakery & Patisserie");
+      tokoroti7.bindTooltip("Plaza Indonesia, Jl. MH Thamrin, Gondangdia, Menteng, Jakarta Pusat, 10350");
+      tokoroti7.addTo(map);
+
+      var tokoroti8 = L.marker([-6.170114, 106.813419], { icon: markerBurger });
+      tokoroti8.bindPopup("BreadTalk - Green Pramuka Square");
+      tokoroti8.bindTooltip("Jl. Jenderal Ahmad Yani Kav. 49, Cempaka Putih, Jakarta Pusat, 10570");
+      tokoroti8.addTo(map);
+
+      var tokoroti9 = L.marker([-6.168519, 106.837972], { icon: markerBurger });
+      tokoroti9.bindPopup("Lyon Patisserie");
+      tokoroti9.bindTooltip("Mandarin Oriental Hotel, Jl. MH Thamrin, Menteng, Jakarta Pusat, 10350");
+      tokoroti9.addTo(map);
+
+      var tokoroti10 = L.marker([-6.178967, 106.823752], { icon: markerBurger });
+      tokoroti10.bindPopup("Francis Artisan Bakery");
+      tokoroti10.bindTooltip("Jl. HOS. Cokroaminoto No.84, RT.3/RW.3, Menteng, Jakarta Pusat, 10310");
+      tokoroti10.addTo(map);
+
+      var tokoroti11 = L.marker([-6.166274, 106.824402], { icon: markerBurger });
+      tokoroti11.bindPopup("Berrywell Grand Indonesia");
+      tokoroti11.bindTooltip("Jl. MH Thamrin No.1, Kebon Melati, Tanah Abang, Jakarta Pusat, 10310");
+      tokoroti11.addTo(map);
+
+      var tokoroti12 = L.marker([-6.176578, 106.827873], { icon: markerBurger });
+      tokoroti12.bindPopup("Bakerzin - Central Park");
+      tokoroti12.bindTooltip("Jl. Letjen S. Parman, RT.12/RW.6, Tanjung Duren, Jakarta Barat, 11470");
+      tokoroti12.addTo(map);
+
+      var tokoroti13 = L.marker([-6.179759, 106.827761], { icon: markerBurger });
+      tokoroti13.bindPopup("Monolog Coffee and Co");
+      tokoroti13.bindTooltip("Plaza Senayan, Jl. Asia Afrika, Jakarta Pusat, 10270");
+      tokoroti13.addTo(map);
+
+      var tokoroti14 = L.marker([-6.163876, 106.838942], { icon: markerBurger });
+      tokoroti14.bindPopup("Animo Bread Culture");
+      tokoroti14.bindTooltip("Jl. KH Wahid Hasyim, Gondangdia, Menteng, Jakarta Pusat, 10310");
+      tokoroti14.addTo(map);
+
+      var tokoroti15 = L.marker([-6.16772, 106.82713], { icon: markerBurger });
+      tokoroti15.bindPopup("Oma Bakery");
+      tokoroti15.bindTooltip("Jl. HOS. Cokroaminoto, Menteng, Jakarta Pusat, 10310");
+      tokoroti15.addTo(map);
+
+      var tokoroti16 = L.marker([-6.163432, 106.83511], { icon: markerBurger });
+      tokoroti16.bindPopup("Holland Bakery - Thamrin");
+      tokoroti16.bindTooltip("Jl. KH Wahid Hasyim No.123, Kebon Sirih, Menteng, Jakarta Pusat, 10340");
+      tokoroti16.addTo(map);
+
+      var tokoroti17 = L.marker([-6.175829, 106.828671], { icon: markerBurger });
+      tokoroti17.bindPopup("Roti Bakar Eddy");
+      tokoroti17.bindTooltip("Jl. Dr. Satrio, Setiabudi, Jakarta Pusat, 12940");
+      tokoroti17.addTo(map);
+
+      var tokoroti18 = L.marker([-6.159832, 106.828745], { icon: markerBurger });
+      tokoroti18.bindPopup("Paris Baguette - Thamrin");
+      tokoroti18.bindTooltip("Grand Indonesia, Jl. MH Thamrin No.1, Tanah Abang, Jakarta Pusat, 10310");
+      tokoroti18.addTo(map);
+
+      var tokoroti19 = L.marker([-6.176947, 106.829321], { icon: markerBurger });
+      tokoroti19.bindPopup("Mayapada Bakery");
+      tokoroti19.bindTooltip("Jl. Sudirman Kav. 28, Setiabudi, Jakarta Pusat, 12920");
+      tokoroti19.addTo(map);
+
+      var tokoroti20 = L.marker([-6.173482, 106.825763], { icon: markerBurger });
+      tokoroti20.bindPopup("Dough Darlings");
+      tokoroti20.bindTooltip("Jl. KH Wahid Hasyim No.87, Menteng, Jakarta Pusat, 10340");
+      tokoroti20.addTo(map);
+
+      var tokoroti21 = L.marker([-6.16421, 106.835491], { icon: markerBurger });
+      tokoroti21.bindPopup("Ruth's Patisserie");
+      tokoroti21.bindTooltip("Jl. KH Mas Mansyur No.72, Tanah Abang, Jakarta Pusat, 10230");
+      tokoroti21.addTo(map);
+
+      var tokoroti22 = L.marker([-6.17293, 106.830651], { icon: markerBurger });
+      tokoroti22.bindPopup("Colette & Lola");
+      tokoroti22.bindTooltip("Jl. Sumenep No.5, Menteng, Jakarta Pusat, 10310");
+      tokoroti22.addTo(map);
+
+      var tokoroti23 = L.marker([-6.163254, 106.821547], { icon: markerBurger });
+      tokoroti23.bindPopup("Caramel Patisserie");
+      tokoroti23.bindTooltip("Jl. KH Wahid Hasyim No.56, Menteng, Jakarta Pusat, 10340");
+      tokoroti23.addTo(map);
+
+      var tokoroti24 = L.marker([-6.160234, 106.833471], { icon: markerBurger });
+      tokoroti24.bindPopup("Sakura Bakery");
+      tokoroti24.bindTooltip("Jl. KH Mas Mansyur, Tanah Abang, Jakarta Pusat, 10230");
+      tokoroti24.addTo(map);
+
+      var tokoroti25 = L.marker([-6.171132, 106.835217], { icon: markerBurger });
+      tokoroti25.bindPopup("Komugi Bakery");
+      tokoroti25.bindTooltip("Jl. KH Wahid Hasyim No.125, Menteng, Jakarta Pusat, 10340");
+      tokoroti25.addTo(map);
+
+      var tokoroti26 = L.marker([-6.165419, 106.830834], { icon: markerBurger });
+      tokoroti26.bindPopup("Bebini Gelati & Bakery");
+      tokoroti26.bindTooltip("Jl. Imam Bonjol No.47, Menteng, Jakarta Pusat, 10310");
+      tokoroti26.addTo(map);
+
+      var tokoroti27 = L.marker([-6.173052, 106.827409], { icon: markerBurger });
+      tokoroti27.bindPopup("Hokkaido Baked Cheese Tart");
+      tokoroti27.bindTooltip("Plaza Indonesia, Jl. MH Thamrin No.1, Jakarta Pusat, 10310");
+      tokoroti27.addTo(map);
+
+      var tokoroti28 = L.marker([-6.161821, 106.824367], { icon: markerBurger });
+      tokoroti28.bindPopup("Mrs. Fields Cookies");
+      tokoroti28.bindTooltip("Sarinah, Jl. MH Thamrin No.11, Kebon Sirih, Menteng, Jakarta Pusat, 10310");
+      tokoroti28.addTo(map);
+
+      var tokoroti29 = L.marker([-6.170982, 106.828943], { icon: markerBurger });
+      tokoroti29.bindPopup("Pan & Co.");
+      tokoroti29.bindTooltip("Jl. Prof. Dr. Satrio, Setiabudi, Jakarta Pusat, 12940");
+      tokoroti29.addTo(map);
+
+      var tokoroti30 = L.marker([-6.167857, 106.829631], { icon: markerBurger });
+      tokoroti30.bindPopup("Bawean Bakery");
+      tokoroti30.bindTooltip("Jl. Wahid Hasyim, Menteng, Jakarta Pusat, 10340");
+      tokoroti30.addTo(map);
+    </script>
+  </body>
+</html>
